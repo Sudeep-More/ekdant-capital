@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
 
-import { themeInitScript } from "@/components/ThemeToggle";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import "./globals.css";
 
@@ -40,16 +39,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${sora.variable} ${inter.variable} h-full`}
-      // data-theme is stamped on by themeInitScript before paint, so the
-      // server markup deliberately differs from the hydrated DOM.
-      suppressHydrationWarning
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
+    <html lang="en" className={`${sora.variable} ${inter.variable} h-full`}>
       <body className="min-h-full flex flex-col overflow-x-clip bg-page">
         {/* Anchor target for "back to top". It cannot live on the header,
             which is sticky and therefore never leaves the viewport — the

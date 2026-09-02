@@ -6,14 +6,13 @@
    Two layers:
    1. Fixed scales (brand / accent / ink) — absolute colours that never change.
    2. Semantic roles (page / surface / line / heading / …) — declared as plain
-      custom properties, re-declared under [data-theme="dark"], then exposed to
-      Tailwind through `@theme inline` so the generated utilities emit
-      `var(--role)` and therefore flip with the theme at runtime.
+      custom properties, then exposed to Tailwind through `@theme inline` so
+      the generated utilities emit `var(--role)`.
+
+   The site is light-only; there is no dark palette.
 
    Components should almost always use the semantic role, not the raw scale.
    ========================================================================== */
-
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
   /* Brand — forest green, keyed to the logo wordmark (#0c4c18) --------- */
@@ -54,7 +53,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Semantic roles — light (default)
+   Semantic roles
    -------------------------------------------------------------------------- */
 
 :root {
@@ -77,13 +76,13 @@
   --tint: #eafaf0; /* icon wells, chips */
   --brand-ink: #01582b; /* metric numerals, eyebrows, links */
 
-  /* Full-bleed emphasis bands. In THIS theme they are light green — the
-     contrast against the white page is what makes them read as a band. */
+  /* Full-bleed emphasis bands — light green; the contrast against the white
+     page is what makes them read as a band. */
   --feature: #e9f6ee;
   --feature-deep: #d8efe1;
 
-  /* Text and furniture sitting on those bands. Declared as roles so the
-     bands can invert in dark mode without touching a single component. */
+  /* Text and furniture sitting on those bands, declared as roles so the
+     bands can be restyled without touching a single component. */
   --on-feature-heading: #0b2618;
   --on-feature-body: #345c48;
   --on-feature-muted: #4b6e5c;
@@ -105,54 +104,8 @@
     0 28px 56px -20px rgb(11 20 16 / 0.24);
 }
 
-/* --------------------------------------------------------------------------
-   Semantic roles — dark
-   -------------------------------------------------------------------------- */
-
-[data-theme="dark"] {
-  color-scheme: dark;
-
-  --page: #071310;
-  --surface: #0e1a15;
-  --surface-alt: #0a1611;
-  --surface-sunken: #16251d;
-
-  --line: #1c2f24;
-  --line-strong: #27412f;
-
-  --heading: #eff7f1;
-  --body: #b3c8bb;
-  --muted: #87a091;
-  --faint: #63806e;
-
-  --tint: #10261a;
-  --brand-ink: #88e4a0;
-
-  /* The bands invert to deep green here, and the on-feature roles follow */
-  --feature: #0c1a14;
-  --feature-deep: #06110d;
-
-  --on-feature-heading: #f0f8f2;
-  --on-feature-body: #b8cfc0;
-  --on-feature-muted: #8aa695;
-  --on-feature-accent: #34d399;
-  --on-feature-line: rgb(255 255 255 / 0.12);
-  --on-feature-fill: rgb(255 255 255 / 0.08);
-  --veil-line: rgb(255 255 255 / 0.05);
-
-  --btn-primary-bg: #4ecb70;
-  --btn-primary-bg-hover: #88e4a0;
-  --btn-primary-fg: #04190a;
-  --btn-primary-glow: rgb(78 203 112 / 0.4);
-
-  /* Shadows read as noise on dark grounds — trade them for depth-by-contrast */
-  --shadow-card-raw: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -12px rgb(0 0 0 / 0.6);
-  --shadow-lift-raw: 0 2px 4px rgb(0 0 0 / 0.45),
-    0 28px 56px -20px rgb(0 0 0 / 0.75);
-}
-
 /* Expose the roles as Tailwind utilities. `inline` keeps them as var()
-   references so a theme swap is instant and needs no rebuild. */
+   references, so a token change needs no component edits. */
 @theme inline {
   --color-page: var(--page);
   --color-surface: var(--surface);
@@ -187,8 +140,8 @@
 /* --------------------------------------------------------------------------
    Artwork palette (components/Art.tsx)
 
-   The "dark" tone sits on bands that are dark in both themes, so it is fixed.
-   The "light" tone sits on cards, so it has to follow the theme.
+   The "dark" tone sits on the deep-green full-bleed bands; the "light" tone
+   sits on cards and the white page.
    -------------------------------------------------------------------------- */
 
 :root {
@@ -205,15 +158,6 @@
   --art-light-solid: #16a34a;
   --art-light-accent: #059669;
   --art-light-soft: #ffffff;
-}
-
-[data-theme="dark"] {
-  --art-light-field: #10261a;
-  --art-light-field-to: #0a1c13;
-  --art-light-line: #4ade80;
-  --art-light-solid: #15803d;
-  --art-light-accent: #34d399;
-  --art-light-soft: #bbf7d0;
 }
 
 @layer base {
@@ -348,10 +292,6 @@
   .btn-outline:hover {
     border-color: var(--color-accent-500);
     color: var(--color-accent-600);
-  }
-
-  [data-theme="dark"] .btn-outline:hover {
-    color: var(--color-accent-300);
   }
 
   /* Range inputs (EMI calculator) ---------------------------------------- */

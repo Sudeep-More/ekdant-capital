@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 import { Icon } from "@/components/Icon";
 import { Logo } from "@/components/Logo";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { company, navigation, socials } from "@/lib/site";
 
 export function SiteHeader() {
@@ -66,24 +65,20 @@ export function SiteHeader() {
             </span>
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-1">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  {...(social.href.startsWith("http")
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  aria-label={social.label}
-                  className="grid size-7 place-items-center rounded-md text-on-feature-body transition-colors hover:bg-on-feature-fill hover:text-on-feature-heading"
-                >
-                  <Icon name={social.icon} className="size-4" />
-                </a>
-              ))}
-            </div>
-            <span className="h-4 w-px bg-on-feature-line" />
-            <ThemeToggle tone="dark" className="size-7" />
+          <div className="flex items-center gap-1">
+            {socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                {...(social.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                aria-label={social.label}
+                className="grid size-7 place-items-center rounded-md text-on-feature-body transition-colors hover:bg-on-feature-fill hover:text-on-feature-heading"
+              >
+                <Icon name={social.icon} className="size-4" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -183,7 +178,6 @@ export function SiteHeader() {
               Apply now
               <Icon name="arrow-right" className="size-4" strokeWidth={2} />
             </a>
-            <ThemeToggle className="size-11 lg:hidden" />
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}

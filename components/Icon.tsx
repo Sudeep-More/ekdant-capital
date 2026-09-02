@@ -25,14 +25,12 @@ export type IconName =
   | "map"
   | "menu"
   | "minus"
-  | "moon"
   | "phone"
   | "pin"
   | "plus"
   | "quote"
   | "receipt"
   | "shield"
-  | "sun"
   | "upload"
   | "wallet"
   | "users"
@@ -128,9 +126,6 @@ const paths: Record<IconName, React.ReactNode> = {
   ),
   menu: <path d="M4 7h16M4 12h16M4 17h11" />,
   minus: <path d="M5.5 12h13" />,
-  moon: (
-    <path d="M20.2 14.6A8.6 8.6 0 1 1 9.4 3.8a6.9 6.9 0 0 0 10.8 10.8Z" />
-  ),
   phone: (
     <path d="M6.4 3.75h2.1l1.5 3.9-2 1.4a10.6 10.6 0 0 0 6.95 6.95l1.4-2 3.9 1.5v2.1a2.65 2.65 0 0 1-2.9 2.65C11.2 19.6 4.4 12.8 3.75 6.65A2.65 2.65 0 0 1 6.4 3.75Z" />
   ),
@@ -158,12 +153,6 @@ const paths: Record<IconName, React.ReactNode> = {
     <>
       <path d="M12 3.2 5 5.9v5.6c0 4 2.8 7.6 7 9.3 4.2-1.7 7-5.3 7-9.3V5.9L12 3.2Z" />
       <path d="M9.2 12.1 11.4 14.4 15.2 10" />
-    </>
-  ),
-  sun: (
-    <>
-      <circle cx="12" cy="12" r="4.4" />
-      <path d="M12 2.6v2.1M12 19.3v2.1M4.35 4.35l1.5 1.5M18.15 18.15l1.5 1.5M2.6 12h2.1M19.3 12h2.1M4.35 19.65l1.5-1.5M18.15 5.85l1.5-1.5" />
     </>
   ),
   upload: (

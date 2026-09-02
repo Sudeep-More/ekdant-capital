@@ -7,6 +7,13 @@
 import type { ArtVariant } from "@/components/Art";
 import type { IconName } from "@/components/Icon";
 
+/**
+ * Canonical origin — no trailing slash. This MUST match the primary domain set
+ * in Vercel. If the two disagree, Google is handed two competing versions of
+ * every page, which is the one thing to avoid while contesting a brand term.
+ */
+export const siteUrl = "https://ekdantcapital.in";
+
 export const company = {
   name: "Ekdant",
   legalName: "Ekdant Capital Private Limited",

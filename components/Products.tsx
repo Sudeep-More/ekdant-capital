@@ -44,20 +44,6 @@ export function Products() {
                   {product.tenure}
                 </p>
 
-                <p className="mt-5 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">
-                  Funded by
-                </p>
-                <ul className="mt-2.5 flex flex-wrap gap-1.5">
-                  {product.banks.map((bank) => (
-                    <li
-                      key={bank}
-                      className="rounded-md bg-tint px-2 py-1 text-[0.6875rem] font-semibold leading-tight text-brand-ink"
-                    >
-                      {bank}
-                    </li>
-                  ))}
-                </ul>
-
                 <ul className="mt-5 space-y-2.5 border-t border-line pt-5">
                   {product.points.map((point) => (
                     <li

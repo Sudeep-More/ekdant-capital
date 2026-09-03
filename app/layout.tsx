@@ -58,21 +58,12 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Ekdant Capital",
     locale: "en_IN",
-    images: [
-      {
-        url: "/ekdant-logo.png",
-        width: 720,
-        height: 227,
-        alt: "Ekdant Capital",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ekdant Capital — Your growth, our financial solutions",
     description:
       "One application, 42 lenders competing for it. Paperless approval and disbursal within 24 hours.",
-    images: ["/ekdant-logo.png"],
   },
 };
 

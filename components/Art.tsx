@@ -33,6 +33,9 @@ type ArtProps = {
   className?: string;
 };
 
+/* Since the artwork became outline-led, `solid`, `soft` and `accent` are
+   FILL-ONLY: they resolve to white or a pale mint, so using any of them as a
+   stroke renders invisible. All line work uses `line`. */
 type Palette = {
   field: string;
   fieldTo: string;
@@ -62,6 +65,9 @@ export function Art({ variant, tone = "light", className }: ArtProps) {
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
       focusable="false"
+      /* `stroke` and `stroke-width` are inherited CSS properties, so setting
+         them here outlines every shape below without touching each one. */
+      style={{ stroke: c.line, strokeWidth: 2.5, strokeLinejoin: "round" }}
     >
       <defs>
         <linearGradient id={`${gid}-field`} x1="0" y1="0" x2="1" y2="1">
@@ -74,7 +80,7 @@ export function Art({ variant, tone = "light", className }: ArtProps) {
         </linearGradient>
       </defs>
 
-      <rect width="400" height="300" fill={`url(#${gid}-field)`} />
+      <rect width="400" height="300" fill={`url(#${gid}-field)`} stroke="none" />
 
       {variant === "orbit" && (
         <g fill="none" style={{ stroke: c.line }}>
@@ -83,25 +89,25 @@ export function Art({ variant, tone = "light", className }: ArtProps) {
             <ellipse cx="200" cy="150" rx="112" ry="112" />
             <ellipse cx="200" cy="150" rx="74" ry="74" />
           </g>
-          <circle cx="200" cy="150" r="40" style={{ fill: c.solid, stroke: "none" }} />
+          <circle cx="200" cy="150" r="40" style={{ fill: c.solid }} />
           <path
             d="M182 152.5 195 165l24-27"
             fill="none"
             strokeWidth="6"
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ stroke: c.soft }}
+            style={{ stroke: c.line }}
           />
           <circle
             cx="200"
             cy="0"
             r="11"
             transform="translate(0 38)"
-            style={{ fill: c.accent, stroke: "none" }}
+            style={{ fill: c.accent }}
           />
-          <circle cx="88" cy="150" r="7" opacity="0.75" style={{ fill: c.line, stroke: "none" }} />
-          <circle cx="312" cy="150" r="9" opacity="0.85" style={{ fill: c.accent, stroke: "none" }} />
-          <circle cx="200" cy="262" r="6" opacity="0.6" style={{ fill: c.line, stroke: "none" }} />
+          <circle cx="88" cy="150" r="7" opacity="0.75" style={{ fill: c.line }} />
+          <circle cx="312" cy="150" r="9" opacity="0.85" style={{ fill: c.accent }} />
+          <circle cx="200" cy="262" r="6" opacity="0.6" style={{ fill: c.line }} />
         </g>
       )}
 
@@ -137,7 +143,7 @@ export function Art({ variant, tone = "light", className }: ArtProps) {
             strokeLinecap="round"
             strokeDasharray="1 9"
             opacity="0.9"
-            style={{ stroke: c.soft }}
+            style={{ stroke: c.line }}
           />
           <line x1="42" y1="248" x2="358" y2="248" strokeWidth="2.5" style={{ stroke: c.line }} />
         </g>
@@ -294,7 +300,7 @@ export function Art({ variant, tone = "light", className }: ArtProps) {
               />
             )),
           )}
-          <g fill="none" strokeWidth="11" strokeLinecap="round" style={{ stroke: c.accent }}>
+          <g fill="none" strokeWidth="11" strokeLinecap="round" style={{ stroke: c.line }}>
             <circle cx="300" cy="104" r="21" />
             <path d="M300 125v42m0-13h17" />
           </g>
@@ -319,8 +325,8 @@ export function Art({ variant, tone = "light", className }: ArtProps) {
           <path d="M104 132 100 176l42-14Z" opacity="0.55" style={{ fill: c.line }} />
           <rect x="120" y="134" width="160" height="90" rx="12" opacity="0.35" style={{ fill: c.line }} />
           <rect x="134" y="120" width="160" height="90" rx="12" style={{ fill: `url(#${gid}-fade)` }} />
-          <circle cx="214" cy="165" r="27" fill="none" strokeWidth="6" opacity="0.9" style={{ stroke: c.soft }} />
-          <g fill="none" strokeWidth="6" strokeLinecap="round" style={{ stroke: c.accent }}>
+          <circle cx="214" cy="165" r="27" fill="none" strokeWidth="6" opacity="0.9" style={{ stroke: c.line }} />
+          <g fill="none" strokeWidth="6" strokeLinecap="round" style={{ stroke: c.line }}>
             <path d="M203 153h22M203 165h22" />
             <path d="M206 153c14 0 18 5 18 11s-6 10-16 10l16 15" />
           </g>

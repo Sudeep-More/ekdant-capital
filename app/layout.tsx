@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   // Resolves every relative URL below into an absolute one. Without it the
   // OpenGraph tags have no origin to attach to and social previews break.
   metadataBase: new URL(siteUrl),
-  title: "Ekdant Capital — Your growth, our financial solutions",
+  title: "Ekdant Capital — Loan Agent in Vadodara | 42 Lenders, One Application",
   description:
-    "Ekdant Capital arranges personal, business, home and property loans across a panel of 42 banks and NBFCs, with paperless approval and disbursal within 24 hours.",
+    "Loan advisors in Vadodara, Gujarat. Ekdant Capital arranges personal, business, home, property, car and education loans across a panel of 42 banks and NBFCs — paperless, with disbursal within 24 hours.",
   keywords: [
     "personal loan",
     "business loan",
@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     "EMI calculator",
     "Ekdant Capital",
     "loan agent Vadodara",
+    "personal loan Vadodara",
+    "business loan Vadodara",
+    "Ekdant Capital Vadodara",
   ],
   // One declared canonical host, matching `siteUrl` and the Vercel primary
   // domain. Guards against the apex/www split being read as duplicate pages.

@@ -84,17 +84,6 @@ export function SiteFooter() {
           <p className="text-sm text-on-feature-muted">
             © {new Date().getFullYear()} {company.legalName}. All rights reserved.
           </p>
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-on-feature-muted">
-            {["Privacy policy", "Terms of use", "Interest rate policy", "Sitemap"].map(
-              (item) => (
-                <li key={item}>
-                  <a href="#top" className="transition-colors hover:text-on-feature-heading">
-                    {item}
-                  </a>
-                </li>
-              ),
-            )}
-          </ul>
         </div>
       </div>
     </footer>

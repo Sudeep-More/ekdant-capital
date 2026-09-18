@@ -96,14 +96,6 @@ export function SiteFooter() {
             )}
           </ul>
         </div>
-        <div className="shell pb-8">
-          <p className="max-w-4xl text-xs leading-relaxed text-on-feature-muted">
-            Placeholder disclosure — replace before launch. Add your entity&apos;s
-            CIN, NBFC registration number, registered office and the regulatory
-            disclaimers required in your jurisdiction. All rates, tenures and
-            figures shown on this site are illustrative sample content.
-          </p>
-        </div>
       </div>
     </footer>
   );

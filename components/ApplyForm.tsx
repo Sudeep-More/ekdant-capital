@@ -112,14 +112,12 @@ export function ApplyForm() {
             <Field
               label="Full name"
               name="name"
-              placeholder="Ananya Deshpande"
               error={errors.name}
             />
             <Field
               label="Mobile number"
               name="phone"
               type="tel"
-              placeholder="98765 43210"
               error={errors.phone}
             />
           </div>
@@ -128,7 +126,6 @@ export function ApplyForm() {
             <Field
               label="City"
               name="city"
-              placeholder="Pune"
               error={errors.city}
             />
           </div>

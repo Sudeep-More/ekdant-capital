@@ -13,10 +13,12 @@ type Errors = Partial<Record<"name" | "phone" | "city", string>>;
  */
 export function ApplyForm() {
   const [product, setProduct] = useState<string>(products[0].name);
-  const [submitted, setSubmitted] = useState(false);
+  const [reference, setReference] = useState<string | null>(null);
   const [errors, setErrors] = useState<Errors>({});
+  const [sending, setSending] = useState(false);
+  const [failure, setFailure] = useState<string | null>(null);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
@@ -33,8 +35,38 @@ export function ApplyForm() {
     setErrors(next);
     if (Object.keys(next).length > 0) return;
 
-    // No backend wired up yet — swap this for your CRM or lead endpoint.
-    setSubmitted(true);
+    setSending(true);
+    setFailure(null);
+
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product,
+          name,
+          phone,
+          city,
+          consent: data.get("consent") === "on",
+        }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      // Only call it received once the lead is actually recorded.
+      if (!response.ok || !result.reference) {
+        setFailure(
+          result.error ?? "Something went wrong. Please try again in a moment.",
+        );
+        return;
+      }
+
+      setReference(result.reference);
+    } catch {
+      setFailure("Check your connection and try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -42,7 +74,7 @@ export function ApplyForm() {
       id="apply"
       className="rounded-[1.5rem] border border-white/12 bg-surface p-6 shadow-lift sm:p-7"
     >
-      {submitted ? (
+      {reference ? (
         <div className="flex flex-col items-start py-6">
           <span className="grid size-13 place-items-center rounded-2xl bg-tint text-brand-ink">
             <Icon name="check" className="size-7" strokeWidth={2.4} />
@@ -53,14 +85,12 @@ export function ApplyForm() {
           <p className="mt-3 text-[0.9375rem] leading-relaxed text-body">
             An advisor will call you within one working hour with offers from
             the panel. Your reference is{" "}
-            <strong className="font-semibold text-brand-ink">
-              EK-2026-04817
-            </strong>
+            <strong className="font-semibold text-brand-ink">{reference}</strong>
             .
           </p>
           <button
             type="button"
-            onClick={() => setSubmitted(false)}
+            onClick={() => setReference(null)}
             className="btn btn-outline mt-6"
           >
             Submit another enquiry
@@ -141,9 +171,24 @@ export function ApplyForm() {
             overriding my DNC registration.
           </label>
 
-          <button type="submit" className="btn btn-primary mt-5 w-full">
-            Get my best offer
-            <Icon name="arrow-right" className="size-4" strokeWidth={2} />
+          {failure && (
+            <p
+              role="alert"
+              className="mt-4 rounded-lg border border-red-300 bg-red-50 px-3 py-2 text-xs font-medium text-red-700"
+            >
+              {failure}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={sending}
+            className="btn btn-primary mt-5 w-full disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            {sending ? "Sending…" : "Get my best offer"}
+            {!sending && (
+              <Icon name="arrow-right" className="size-4" strokeWidth={2} />
+            )}
           </button>
         </form>
       )}

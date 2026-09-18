@@ -171,9 +171,6 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-2.5">
-            <a href="#calculator" className="btn btn-outline hidden xl:inline-flex">
-              Check my eligibility
-            </a>
             <a href="#apply" className="btn btn-primary hidden sm:inline-flex">
               Apply now
               <Icon name="arrow-right" className="size-4" strokeWidth={2} />

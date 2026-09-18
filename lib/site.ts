@@ -199,10 +199,6 @@ export const steps = [
 
 export const footerColumns = [
   {
-    heading: "Company",
-    links: ["How it works", "Meet the team", "Fair practice code", "Careers"],
-  },
-  {
     heading: "Borrow",
     links: [
       "Personal loan",

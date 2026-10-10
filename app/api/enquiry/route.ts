@@ -85,9 +85,17 @@ export async function POST(request: Request) {
     });
 
     // Apps Script answers 302 → script.googleusercontent.com, which fetch
-    // follows, so a non-OK status here is a genuine failure.
-    if (!response.ok) {
-      console.error("Sheet webhook failed", response.status, await response.text());
+    // follows, so a non-OK status here is a genuine failure. The script also
+    // reports its own errors (bad token, sheet missing) with a 200, so only
+    // `{ ok: true }` counts as recorded.
+    const text = await response.text();
+    let ok = false;
+    try {
+      ok = response.ok && JSON.parse(text).ok === true;
+    } catch {}
+
+    if (!ok) {
+      console.error("Sheet webhook failed", response.status, text);
       return NextResponse.json(
         { error: "We could not record your enquiry. Please call us instead." },
         { status: 502 },

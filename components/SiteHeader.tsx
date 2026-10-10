@@ -69,7 +69,8 @@ export function SiteHeader() {
             {socials.map((social) => (
               <a
                 key={social.label}
-                href={social.href}
+                href={social.href || undefined}
+                aria-disabled={social.href ? undefined : true}
                 {...(social.href.startsWith("http")
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}

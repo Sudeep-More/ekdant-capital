@@ -32,7 +32,8 @@ export const company = {
 
 export const socials = [
   { label: "Facebook", href: "https://www.facebook.com/share/1HSbhz1vgw/", icon: "facebook" },
-  { label: "Google", href: "#", icon: "google" },
+  // No Google profile URL yet — an empty href renders the icon without a link.
+  { label: "Google", href: "", icon: "google" },
 ] as const satisfies readonly { label: string; href: string; icon: IconName }[];
 
 export type NavItem = {

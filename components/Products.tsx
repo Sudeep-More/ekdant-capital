@@ -24,7 +24,7 @@ export function Products() {
             <li
               key={product.name}
               id={productId(product.name)}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/60 hover:shadow-lift"
+              className="product-card group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/60 hover:shadow-lift"
             >
               <div className="relative aspect-[4/2.6] overflow-hidden">
                 <Art

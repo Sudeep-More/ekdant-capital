@@ -335,6 +335,33 @@
       linear-gradient(to bottom, var(--veil-line) 1px, transparent 1px);
     background-size: 3.5rem 3.5rem;
   }
+
+  /* Product card opened from a loan link -------------------------------- */
+  /* On wider screens several cards share a row, so scrolling alone can't
+     single one out — outline the card the link points at. */
+  .product-card {
+    scroll-margin-top: 1rem;
+  }
+
+  .product-card:target {
+    outline: 3px solid var(--color-brand-600);
+    outline-offset: 3px;
+    animation: card-spotlight 1.4s ease-out;
+  }
+}
+
+@keyframes card-spotlight {
+  0% {
+    outline-color: transparent;
+    outline-offset: 14px;
+  }
+  40% {
+    outline-color: var(--color-brand-400);
+  }
+  100% {
+    outline-color: var(--color-brand-600);
+    outline-offset: 3px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -23,12 +23,12 @@ export function ApplyForm() {
     const data = new FormData(event.currentTarget);
 
     const name = String(data.get("name") ?? "").trim();
-    const phone = String(data.get("phone") ?? "").replace(/\s+/g, "");
+    const phone = String(data.get("phone") ?? "");
     const city = String(data.get("city") ?? "").trim();
 
     const next: Errors = {};
     if (name.length < 2) next.name = "Tell us what to call you.";
-    if (!/^(\+91)?[6-9]\d{9}$/.test(phone))
+    if (!/^[6-9]\d{9}$/.test(phone))
       next.phone = "Enter a 10-digit Indian mobile number.";
     if (city.length < 2) next.city = "Which city?";
 
@@ -148,6 +148,18 @@ export function ApplyForm() {
               label="Mobile number"
               name="phone"
               type="tel"
+              inputMode="numeric"
+              autoComplete="tel-national"
+              // Digits only, capped at 10. A pasted "+91 98765 43210" or
+              // "098765 43210" keeps the number, not the prefix — which is
+              // also why there is no maxLength: it would cut the paste first.
+              onInput={(event) => {
+                const input = event.currentTarget;
+                input.value = input.value
+                  .replace(/^\s*(\+91|0)/, "")
+                  .replace(/\D/g, "")
+                  .slice(0, 10);
+              }}
               error={errors.phone}
             />
           </div>
@@ -202,7 +214,8 @@ function Field({
   type = "text",
   placeholder,
   error,
-}: {
+  ...inputProps
+}: React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   name: string;
   type?: string;
@@ -219,6 +232,7 @@ function Field({
         name={name}
         type={type}
         placeholder={placeholder}
+        {...inputProps}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
         className={`mt-1.5 w-full rounded-lg border bg-surface px-3.5 py-2.5 text-[0.9375rem] text-heading placeholder:text-faint transition-colors ${

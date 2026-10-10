@@ -210,6 +210,8 @@ export const footerColumns = [
       { label: "Business loan", href: "#business-loan" },
       { label: "Home loan", href: "#home-loan" },
       { label: "Loan against property", href: "#loan-against-property" },
+      { label: "Car loan", href: "#car-loan" },
+      { label: "Education loan", href: "#education-loan" },
     ],
   },
   {

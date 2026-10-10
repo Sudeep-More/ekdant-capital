@@ -212,8 +212,6 @@ export const footerColumns = [
     links: [
       "Interest rates & fees",
       "EMI calculator",
-      "Foreclosure requests",
-      "Raise a complaint",
     ],
   },
 ] as const;

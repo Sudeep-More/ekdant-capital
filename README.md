@@ -6,8 +6,9 @@ CSS v4.
 
 ## Getting started
 
-**Prerequisites** — Node.js 20.9+ (developed on v26) and npm. No database, no
-API keys, no `.env` file: the site is fully static.
+**Prerequisites** — Node.js 20.9+ (developed on v26) and npm. No database.
+The site runs without a `.env` file; only the enquiry form needs one (see
+[Enquiry form](#enquiry-form)) and answers 503 until it is set.
 
 ```bash
 git clone https://github.com/Sudeep-More/ekdant-capital.git
@@ -28,16 +29,31 @@ whole project.
 
 ## Deploying
 
-Every route is static (`○ (Static)` in the build output), so any host that can
-serve a Next.js build will do.
+Every page is static (`○ (Static)` in the build output); the one dynamic route
+is `/api/enquiry`, so the host must run Next.js, not just serve files.
 
 - **Vercel** — import the GitHub repo; the framework preset, build command and
-  output directory are all detected. No environment variables to set.
+  output directory are all detected. Set the two enquiry variables below for
+  Production, then redeploy — env changes only reach new deployments.
 - **Anywhere else** — `npm ci && npm run build`, then `npm start` behind a
   reverse proxy on port 3000.
 
 Set `metadataBase` in `app/layout.tsx` to the real production origin before
 going live, or Open Graph URLs resolve against `localhost`.
+
+## Enquiry form
+
+"Get my best offer" posts to `app/api/enquiry/route.ts`, which forwards each
+lead to a Google Apps Script web app that appends a row to the **Leads** tab of
+the enquiry spreadsheet. The script is `scripts/sheet-webhook.gs`; its header
+comment has the one-time setup.
+
+| Variable | Value |
+| --- | --- |
+| `SHEETS_WEBHOOK_URL` | The Apps Script deployment's `/exec` URL |
+| `SHEETS_WEBHOOK_TOKEN` | Same string as the script's `TOKEN` property |
+
+For local testing, put both in `.env.local`.
 
 ## Structure
 

@@ -1,6 +1,6 @@
 import { Art } from "@/components/Art";
 import { Icon } from "@/components/Icon";
-import { products } from "@/lib/site";
+import { productId, products } from "@/lib/site";
 
 export function Products() {
   return (
@@ -23,6 +23,7 @@ export function Products() {
           {products.map((product) => (
             <li
               key={product.name}
+              id={productId(product.name)}
               className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/60 hover:shadow-lift"
             >
               <div className="relative aspect-[4/2.6] overflow-hidden">

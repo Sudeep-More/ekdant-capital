@@ -62,12 +62,12 @@ export function SiteFooter() {
                 </h3>
                 <ul className="mt-5 space-y-3">
                   {column.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.label}>
                       <a
-                        href="#top"
+                        href={link.href}
                         className="text-[0.9375rem] text-on-feature-body transition-colors hover:text-on-feature-heading"
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}

@@ -48,14 +48,14 @@ export const navigation: NavItem[] = [
     label: "Loans",
     href: "#products",
     children: [
-      { label: "Personal loan", href: "#products", hint: "up to ₹50 lakh" },
-      { label: "Business loan", href: "#products", hint: "up to ₹10 crore" },
-      { label: "Home loan", href: "#products", hint: "up to ₹25 crore" },
-      { label: "Loan against property", href: "#products", hint: "up to ₹100 crore" },
-      { label: "Working capital", href: "#products", hint: "up to ₹100 crore" },
-      { label: "Professional loan", href: "#products", hint: "up to ₹5 crore" },
-      { label: "Car loan", href: "#products", hint: "90% on-road" },
-      { label: "Education loan", href: "#products", hint: "up to ₹1 crore" },
+      { label: "Personal loan", href: "#personal-loan", hint: "up to ₹50 lakh" },
+      { label: "Business loan", href: "#business-loan", hint: "up to ₹10 crore" },
+      { label: "Home loan", href: "#home-loan", hint: "up to ₹25 crore" },
+      { label: "Loan against property", href: "#loan-against-property", hint: "up to ₹100 crore" },
+      { label: "Working capital", href: "#working-capital", hint: "up to ₹100 crore" },
+      { label: "Professional loan", href: "#professional-loan", hint: "up to ₹5 crore" },
+      { label: "Car loan", href: "#car-loan", hint: "90% on-road" },
+      { label: "Education loan", href: "#education-loan", hint: "up to ₹1 crore" },
     ],
   },
   {
@@ -100,6 +100,10 @@ export const heroMetrics = [
 /* -------------------------------------------------------------------------- */
 /* Products                                                                   */
 /* -------------------------------------------------------------------------- */
+
+/** Anchor id for a product card, e.g. "Personal loan" -> "personal-loan". */
+export const productId = (name: string) =>
+  name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
 export const products = [
   {
@@ -201,17 +205,17 @@ export const footerColumns = [
   {
     heading: "Borrow",
     links: [
-      "Personal loan",
-      "Business loan",
-      "Home loan",
-      "Loan against property",
+      { label: "Personal loan", href: "#personal-loan" },
+      { label: "Business loan", href: "#business-loan" },
+      { label: "Home loan", href: "#home-loan" },
+      { label: "Loan against property", href: "#loan-against-property" },
     ],
   },
   {
     heading: "Support",
     links: [
-      "Interest rates & fees",
-      "EMI calculator",
+      { label: "Interest rates & fees", href: "#calculator" },
+      { label: "EMI calculator", href: "#calculator" },
     ],
   },
 ] as const;

@@ -12,9 +12,9 @@ export function Lenders() {
             The panel your file goes out to
           </h2>
           <p className="mt-4 text-[0.9375rem] leading-relaxed text-body">
-            We are an authorised sourcing partner for every bank and NBFC below.
-            Your file goes to whichever of them prices it best — not whichever
-            pays us most.
+            We evaluate available options across banks and NBFCs to help you
+            find the most suitable offer for your profile — based on pricing,
+            eligibility, and loan terms.
           </p>
         </div>
 

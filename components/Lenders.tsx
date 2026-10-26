@@ -49,6 +49,7 @@ export function Lenders() {
           Lender names and marks are the property of their respective owners and
           are shown to identify the panel we source from.
         </p>
+        <p className="mt-1 text-[0.6875rem] text-muted">Managed by Urban Money</p>
       </div>
     </section>
   );
